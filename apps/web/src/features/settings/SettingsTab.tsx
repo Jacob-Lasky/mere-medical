@@ -18,6 +18,7 @@ import { ExperimentalSettingsGroup } from './components/ExperimentalSettingsGrou
 import { UserSwitchModal } from './components/UserSwitchModal';
 import { UserSwitchDrawer } from './components/UserSwitchDrawer';
 import { AddUserModal } from './components/AddUserModal';
+import { ServerAccountSettingsGroup } from './components/ServerAccountSettingsGroup';
 
 /**
  * Reads the user's patient records, newest first. The user card shows the
@@ -120,6 +121,7 @@ const SettingsTab: React.FC = () => {
       <UserCard />
       <div className="mx-auto flex max-w-4xl flex-col gap-x-4 px-4 pb-20 pt-2 sm:px-6 sm:pb-6 lg:px-8">
         <AppearanceSettingsGroup />
+        <ServerAccountSettingsGroup />
         <PrivacyAndSecuritySettingsGroup />
         <UserDataSettingsGroup />
         <AboutMereSettingsGroup />

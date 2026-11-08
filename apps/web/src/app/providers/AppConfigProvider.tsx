@@ -35,6 +35,7 @@ export interface AppConfig {
   PUBLIC_URL?: string;
   REGISTRATION_TOKEN_REQUIRED?: boolean;
   APP_CONTACT?: string;
+  SERVER_ACCOUNTS_ENABLED?: boolean;
 }
 
 interface AppConfigState {
@@ -112,6 +113,7 @@ export function AppConfigProvider({
         const {
           REGISTRATION_TOKEN_REQUIRED: _required,
           APP_CONTACT: _contact,
+          SERVER_ACCOUNTS_ENABLED: _accounts,
           ...cacheable
         } = configData;
         await saveInstanceConfig(db, cacheable);
