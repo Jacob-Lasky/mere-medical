@@ -13,6 +13,8 @@ import { TenantModule } from './tenant/tenant.module';
 import { ReferenceModule } from './reference/reference.module';
 import { parseReferenceLibraryConfig } from './reference/reference.config';
 import { ConfigModule } from './config/config.module';
+import { AuthModule } from './auth/auth.module';
+import { authConfig } from './auth/auth.config';
 import { describeRequirement, EnableRequirement } from '@mere/shared';
 import {
   allowsPublicConfidentialClients,
@@ -91,6 +93,9 @@ const imports: ModuleMetadata['imports'] = [
   ConfigModule,
   TenantModule,
 ];
+
+const accounts = authConfig(process.env);
+if (accounts) imports.push(AuthModule.register(accounts));
 
 if (vendors.onpatient.status === 'production') {
   imports.push(OnPatientModule.register(vendors.onpatient.registration));

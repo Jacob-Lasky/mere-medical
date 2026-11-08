@@ -23,6 +23,9 @@ If you'd rather deploy to a cloud instance instead of your own computer, check o
 
 ## What you'll need
 
+Optional [server accounts](./server-accounts.md) can be enabled separately. They
+are disabled by default and do not change access to local records.
+
 - [Docker](https://docs.docker.com/get-docker/)
 
 ### Setting Up with Docker

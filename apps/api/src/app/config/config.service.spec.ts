@@ -19,6 +19,16 @@ describe('ConfigService', () => {
   });
 
   describe('getPublicConfig', () => {
+    it('advertises accounts only when enabled, without exposing the setup token or database path', () => {
+      delete process.env.MERE_AUTH_DB_PATH;
+      expect(service.getPublicConfig().SERVER_ACCOUNTS_ENABLED).toBeUndefined();
+      process.env.MERE_AUTH_DB_PATH = '/private/accounts.db';
+      process.env.MERE_AUTH_SETUP_TOKEN = 'synthetic-token';
+      const config = service.getPublicConfig();
+      expect(config.SERVER_ACCOUNTS_ENABLED).toBe(true);
+      expect(JSON.stringify(config)).not.toContain('/private/accounts.db');
+      expect(JSON.stringify(config)).not.toContain('synthetic-token');
+    });
     it('returns config values from environment variables', () => {
       process.env.EPIC_CLIENT_ID = 'test-epic-id';
       process.env.PUBLIC_URL = 'https://example.com';
