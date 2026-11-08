@@ -39,6 +39,7 @@ export interface PublicConfig {
   PUBLIC_URL?: string;
   REGISTRATION_TOKEN_REQUIRED: boolean;
   APP_CONTACT?: string;
+  SERVER_ACCOUNTS_ENABLED?: boolean;
 }
 
 @Injectable()
@@ -68,6 +69,9 @@ export class ConfigService {
       PUBLIC_URL: process.env.PUBLIC_URL,
       REGISTRATION_TOKEN_REQUIRED: access.mode === 'keyed',
       APP_CONTACT: access.mode === 'keyed' ? access.contact : undefined,
+      ...(process.env.MERE_AUTH_DB_PATH
+        ? { SERVER_ACCOUNTS_ENABLED: true }
+        : {}),
     };
   }
 
